@@ -9,11 +9,37 @@
  
  */
 
+const { isInteger } = require('lodash');
+
 function nestedAdd(array) {
   // write code here
+  var sum = 0;
+  for (var i = 0; i < array.length; i++) {
+    if (Array.isArray(array[i])) {
+      // originally had array[i].isArray
+
+      sum += nestedAdd(array[i]); // originally i didnt have the sum being variable
+    } else {
+      sum += array[i];
+    }
+  }
+  return sum;
 }
 
-test.skip("nested arrays addition", () => {
+// function nestedAdd(array) {
+//   var sum = 0;
+//   for (var i = 0; i < array.length; i++) {
+//     const current = array[i];
+//     if (Array.isArray(current)) {
+//       sum += nestedAdd(current);
+//     } else {
+//       sum += current;
+//     }
+//   }
+//   return sum;
+// }
+
+test('nested arrays addition', () => {
   expect(nestedAdd([1, 2, 3])).toEqual(6);
   expect(nestedAdd([1, [2], 3])).toEqual(6);
   expect(nestedAdd([[[[[[[[[5]]]]]]]]])).toEqual(5);
