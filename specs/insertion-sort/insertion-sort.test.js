@@ -13,13 +13,41 @@
   And you put xdescribe instead of describe if you want to suspend running the unit tests.  
 */
 
+const { keyBy } = require('lodash');
+
 function insertionSort(nums) {
   // code goes here
+  //we consider the zero element sorted
+  for (var i = 1; i < nums.length; i++) {
+    var key = nums[i]; // keep track of the number because we essentially destroy it or overwrite
+    var j = i; // we want to keep consider the entire array, which needs array at its zeroth index
+
+    while (j > 0 && key < nums[j - 1]) {
+      nums[j] = nums[j - 1];
+      j -= 1;
+    }
+    nums[j] = key;
+
+    //console.log(nums);
+  }
+  return nums;
 }
+
+// function insertionSort(nums) {
+//   for (var i = 1; i < nums.length; i++) {
+//     numToInsert = nums[i];
+//     var j;
+
+//     for (j = i - 1; j >= 0 && nums[j] > numToInsert; j--) {
+//       nums[j + 1] = nums[j];
+//     }
+//     nums[j + 1] = numToInsert;
+//   }
+// }
 
 // unit tests
 // do not modify the below code
-test.skip("insertion sort", function () {
+test('insertion sort', function () {
   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
   insertionSort(nums);
   expect(nums).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
