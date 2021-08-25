@@ -52,3 +52,32 @@ test('insertion sort', function () {
   insertionSort(nums);
   expect(nums).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 });
+
+// def fib(n):  python syntax
+
+// 	memo = {}
+
+// 	if n in memo:
+// 		return memo[n]
+
+// 	if n <=0:
+// 		return 0
+// 	if n==1 or n==2:
+// 		return 1
+
+// 	memo[n] = fib(n-1) + fib(n-2)
+
+// 	return memo[n]
+// 	#return fib(n-1) + fib(n-2)
+
+// print(fib(8))
+
+function fib(n) {
+  if (n <= 0) {
+    return 0;
+  } else if (n == 1 || n == 2) {
+    return 1;
+  } else {
+    return fib(n - 1) + fib(n - 2);
+  }
+}
